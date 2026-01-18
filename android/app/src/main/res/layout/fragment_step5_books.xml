@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background"
+    android:fillViewport="true"
+    android:paddingBottom="100dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <TextView
+            android:id="@+id/questionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Books you like"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_white"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select 3 books that represent your taste"
+            android:textSize="16sp"
+            android:textColor="@color/text_white"
+            android:alpha="0.8"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Selected Books at Top -->
+        <TextView
+            android:id="@+id/selectedBooksLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selected Books (0/3)"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_white"
+            android:layout_marginBottom="12dp" />
+
+        <LinearLayout
+            android:id="@+id/selectedBooksContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/username_input_background"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Search Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+            
+            <EditText
+                android:id="@+id/searchInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Search books..."
+                android:textColorHint="@color/text_white"
+                android:textColor="@color/text_white"
+                android:textSize="16sp"
+                android:padding="16dp"
+                android:background="@drawable/username_input_background"
+                android:imeOptions="actionSearch"
+                android:maxLines="1" />
+            
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:textColor="@color/button_text_primary"
+                android:background="@drawable/button_primary_background"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:padding="16dp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Search Results -->
+        <LinearLayout
+            android:id="@+id/searchResultsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="24dp">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search Results - Tap to select"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_white"
+                android:layout_marginBottom="12dp" />
+            
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/resultsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="300dp"
+                android:background="@drawable/username_input_background" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Finish"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/button_text_primary"
+            android:background="@drawable/button_primary_background"
+            android:elevation="8dp" />
+    </LinearLayout>
+</ScrollView>

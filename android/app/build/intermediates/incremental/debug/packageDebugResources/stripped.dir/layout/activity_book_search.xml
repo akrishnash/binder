@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+        <EditText
+            android:id="@+id/searchInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Search books..."
+            android:textColorHint="@color/input_hint"
+            android:textColor="@color/input_text"
+            android:textSize="16sp"
+            android:padding="18dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginEnd="12dp" />
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search"
+            android:textColor="@color/button_text_primary"
+            android:backgroundTint="@color/button_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="18dp"
+            android:elevation="4dp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/resultsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

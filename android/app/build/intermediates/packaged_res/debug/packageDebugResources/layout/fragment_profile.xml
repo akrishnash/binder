@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
+
+        <!-- Profile Photo -->
+        <ImageView
+            android:id="@+id/profilePhoto"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:background="@drawable/edit_text_background"
+            android:contentDescription="Profile photo"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Tap to upload photo"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Name and Age -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/profileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/profileAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="@color/text_secondary"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- City -->
+        <TextView
+            android:id="@+id/profileCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Bio -->
+        <TextView
+            android:id="@+id/profileBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:lineSpacingExtra="4dp"
+            android:padding="16dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Genres -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Genres"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/profileGenres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Interests -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Interests"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/profileInterests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Currently Reading -->
+        <TextView
+            android:id="@+id/currentlyReadingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Currently Reading"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/currentlyReadingContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Favorite Books -->
+        <TextView
+            android:id="@+id/favoriteBooksLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favorite Books"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/favoriteBooksContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Buttons -->
+        <Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Edit Profile"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/button_text_primary"
+            android:backgroundTint="@color/button_primary"
+            android:elevation="4dp"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/viewCardButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="View My Card"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/button_text_primary"
+            android:backgroundTint="@color/button_primary"
+            android:elevation="4dp"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/viewDeveloperCardButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="View Developer Card 👨‍💻"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/button_text_primary"
+            android:backgroundTint="@color/button_primary"
+            android:elevation="4dp"
+            android:layout_marginBottom="40dp" />
+    </LinearLayout>
+</ScrollView>

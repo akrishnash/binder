@@ -1,0 +1,215 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.binder"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:5:5-67
+11-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:6:5-80
+12-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:6:22-77
+13    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+13-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:7:5-76
+13-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:7:22-73
+14
+15    <permission
+15-->[androidx.core:core:1.15.0] C:\Users\anurag\.gradle\caches\8.9\transforms\9ecf272ca7a547ff37c7725e3066b7ec\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
+16        android:name="com.binder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+16-->[androidx.core:core:1.15.0] C:\Users\anurag\.gradle\caches\8.9\transforms\9ecf272ca7a547ff37c7725e3066b7ec\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
+17        android:protectionLevel="signature" />
+17-->[androidx.core:core:1.15.0] C:\Users\anurag\.gradle\caches\8.9\transforms\9ecf272ca7a547ff37c7725e3066b7ec\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
+18
+19    <uses-permission android:name="com.binder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+19-->[androidx.core:core:1.15.0] C:\Users\anurag\.gradle\caches\8.9\transforms\9ecf272ca7a547ff37c7725e3066b7ec\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
+19-->[androidx.core:core:1.15.0] C:\Users\anurag\.gradle\caches\8.9\transforms\9ecf272ca7a547ff37c7725e3066b7ec\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
+20
+21    <application
+21-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:9:5-63:19
+22        android:allowBackup="true"
+22-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:10:9-35
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.15.0] C:\Users\anurag\.gradle\caches\8.9\transforms\9ecf272ca7a547ff37c7725e3066b7ec\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
+24        android:debuggable="true"
+25        android:extractNativeLibs="false"
+26        android:label="@string/app_name"
+26-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:11:9-41
+27        android:supportsRtl="true"
+27-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:12:9-35
+28        android:theme="@style/Theme.Binder"
+28-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:13:9-44
+29        android:usesCleartextTraffic="true" >
+29-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:14:9-44
+30        <activity
+30-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:17:9-26:20
+31            android:name="com.binder.SplashActivity"
+31-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:18:13-43
+32            android:exported="true"
+32-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:19:13-36
+33            android:screenOrientation="portrait"
+33-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:21:13-49
+34            android:theme="@style/Theme.Binder.Splash" >
+34-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:20:13-55
+35            <intent-filter>
+35-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:22:13-25:29
+36                <action android:name="android.intent.action.MAIN" />
+36-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:23:17-69
+36-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:23:25-66
+37
+38                <category android:name="android.intent.category.LAUNCHER" />
+38-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:24:17-77
+38-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:24:27-74
+39            </intent-filter>
+40        </activity>
+41        <activity
+41-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:28:9-31:51
+42            android:name="com.binder.MainActivity"
+42-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:29:13-41
+43            android:exported="false"
+43-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:30:13-37
+44            android:theme="@style/Theme.Binder" />
+44-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:31:13-48
+45        <activity
+45-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:33:9-38:58
+46            android:name="com.binder.onboarding.OnboardingActivity"
+46-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:34:13-58
+47            android:exported="false"
+47-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:35:13-37
+48            android:screenOrientation="portrait"
+48-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:37:13-49
+49            android:theme="@style/Theme.Binder"
+49-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:36:13-48
+50            android:windowSoftInputMode="adjustResize" />
+50-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:38:13-55
+51        <activity
+51-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:40:9-44:52
+52            android:name="com.binder.profile.ProfileEditActivity"
+52-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:41:13-56
+53            android:exported="false"
+53-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:42:13-37
+54            android:screenOrientation="portrait"
+54-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:44:13-49
+55            android:theme="@style/Theme.Binder" />
+55-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:43:13-48
+56        <activity
+56-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:46:9-50:52
+57            android:name="com.binder.profile.CardViewActivity"
+57-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:47:13-53
+58            android:exported="false"
+58-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:48:13-37
+59            android:screenOrientation="portrait"
+59-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:50:13-49
+60            android:theme="@style/Theme.Binder" />
+60-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:49:13-48
+61        <activity
+61-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:52:9-56:52
+62            android:name="com.binder.profile.BookSearchActivity"
+62-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:53:13-55
+63            android:exported="false"
+63-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:54:13-37
+64            android:screenOrientation="portrait"
+64-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:56:13-49
+65            android:theme="@style/Theme.Binder" />
+65-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:55:13-48
+66        <activity
+66-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:58:9-62:52
+67            android:name="com.binder.discovery.DiscoveryActivity"
+67-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:59:13-56
+68            android:exported="false"
+68-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:60:13-37
+69            android:screenOrientation="portrait"
+69-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:62:13-49
+70            android:theme="@style/Theme.Binder" />
+70-->D:\Projects\Binder\android\app\src\main\AndroidManifest.xml:61:13-48
+71
+72        <provider
+72-->[androidx.emoji2:emoji2:1.2.0] C:\Users\anurag\.gradle\caches\8.9\transforms\cfc0761d166f93e63e1756d18c3718ba\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+73            android:name="androidx.startup.InitializationProvider"
+73-->[androidx.emoji2:emoji2:1.2.0] C:\Users\anurag\.gradle\caches\8.9\transforms\cfc0761d166f93e63e1756d18c3718ba\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+74            android:authorities="com.binder.androidx-startup"
+74-->[androidx.emoji2:emoji2:1.2.0] C:\Users\anurag\.gradle\caches\8.9\transforms\cfc0761d166f93e63e1756d18c3718ba\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+75            android:exported="false" >
+75-->[androidx.emoji2:emoji2:1.2.0] C:\Users\anurag\.gradle\caches\8.9\transforms\cfc0761d166f93e63e1756d18c3718ba\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+76            <meta-data
+76-->[androidx.emoji2:emoji2:1.2.0] C:\Users\anurag\.gradle\caches\8.9\transforms\cfc0761d166f93e63e1756d18c3718ba\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+77                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+77-->[androidx.emoji2:emoji2:1.2.0] C:\Users\anurag\.gradle\caches\8.9\transforms\cfc0761d166f93e63e1756d18c3718ba\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+78                android:value="androidx.startup" />
+78-->[androidx.emoji2:emoji2:1.2.0] C:\Users\anurag\.gradle\caches\8.9\transforms\cfc0761d166f93e63e1756d18c3718ba\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+79            <meta-data
+79-->[io.github.jan-tennert.supabase:storage-kt-android-debug:2.5.2] C:\Users\anurag\.gradle\caches\8.9\transforms\fd77dd988a23826b9f536d5f8e29ccbd\transformed\jetified-storage-kt-debug\AndroidManifest.xml:14:13-16:52
+80                android:name="io.github.jan.supabase.storage.SupabaseInitializer"
+80-->[io.github.jan-tennert.supabase:storage-kt-android-debug:2.5.2] C:\Users\anurag\.gradle\caches\8.9\transforms\fd77dd988a23826b9f536d5f8e29ccbd\transformed\jetified-storage-kt-debug\AndroidManifest.xml:15:17-82
+81                android:value="androidx.startup" />
+81-->[io.github.jan-tennert.supabase:storage-kt-android-debug:2.5.2] C:\Users\anurag\.gradle\caches\8.9\transforms\fd77dd988a23826b9f536d5f8e29ccbd\transformed\jetified-storage-kt-debug\AndroidManifest.xml:16:17-49
+82            <meta-data
+82-->[io.github.jan-tennert.supabase:gotrue-kt-android-debug:2.5.2] C:\Users\anurag\.gradle\caches\8.9\transforms\64f346c99bc56a1a0da603e2ca1ad588\transformed\jetified-gotrue-kt-debug\AndroidManifest.xml:14:13-16:52
+83                android:name="io.github.jan.supabase.gotrue.SupabaseInitializer"
+83-->[io.github.jan-tennert.supabase:gotrue-kt-android-debug:2.5.2] C:\Users\anurag\.gradle\caches\8.9\transforms\64f346c99bc56a1a0da603e2ca1ad588\transformed\jetified-gotrue-kt-debug\AndroidManifest.xml:15:17-81
+84                android:value="androidx.startup" />
+84-->[io.github.jan-tennert.supabase:gotrue-kt-android-debug:2.5.2] C:\Users\anurag\.gradle\caches\8.9\transforms\64f346c99bc56a1a0da603e2ca1ad588\transformed\jetified-gotrue-kt-debug\AndroidManifest.xml:16:17-49
+85            <meta-data
+85-->[androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\anurag\.gradle\caches\8.9\transforms\d62a8011e79e3db7ecfc3c1a57e036d5\transformed\jetified-lifecycle-process-2.8.3\AndroidManifest.xml:29:13-31:52
+86                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+86-->[androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\anurag\.gradle\caches\8.9\transforms\d62a8011e79e3db7ecfc3c1a57e036d5\transformed\jetified-lifecycle-process-2.8.3\AndroidManifest.xml:30:17-78
+87                android:value="androidx.startup" />
+87-->[androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\anurag\.gradle\caches\8.9\transforms\d62a8011e79e3db7ecfc3c1a57e036d5\transformed\jetified-lifecycle-process-2.8.3\AndroidManifest.xml:31:17-49
+88            <meta-data
+88-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+89                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+89-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+90                android:value="androidx.startup" />
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+91            <meta-data
+91-->[com.russhwolf:multiplatform-settings-no-arg-android-debug:1.1.1] C:\Users\anurag\.gradle\caches\8.9\transforms\18c36e035ebb7694279ff7f27ea35d05\transformed\jetified-multiplatform-settings-no-arg-debug\AndroidManifest.xml:29:13-31:52
+92                android:name="com.russhwolf.settings.SettingsInitializer"
+92-->[com.russhwolf:multiplatform-settings-no-arg-android-debug:1.1.1] C:\Users\anurag\.gradle\caches\8.9\transforms\18c36e035ebb7694279ff7f27ea35d05\transformed\jetified-multiplatform-settings-no-arg-debug\AndroidManifest.xml:30:17-74
+93                android:value="androidx.startup" />
+93-->[com.russhwolf:multiplatform-settings-no-arg-android-debug:1.1.1] C:\Users\anurag\.gradle\caches\8.9\transforms\18c36e035ebb7694279ff7f27ea35d05\transformed\jetified-multiplatform-settings-no-arg-debug\AndroidManifest.xml:31:17-49
+94        </provider>
+95
+96        <receiver
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+97            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+98            android:directBootAware="false"
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+99            android:enabled="true"
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+100            android:exported="true"
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+101            android:permission="android.permission.DUMP" >
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+102            <intent-filter>
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+103                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+104            </intent-filter>
+105            <intent-filter>
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+106                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+107            </intent-filter>
+108            <intent-filter>
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+109                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+110            </intent-filter>
+111            <intent-filter>
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+112                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\anurag\.gradle\caches\8.9\transforms\5c8f1f4fc6a252dc900c1878920a69a9\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+113            </intent-filter>
+114        </receiver>
+115    </application>
+116
+117</manifest>

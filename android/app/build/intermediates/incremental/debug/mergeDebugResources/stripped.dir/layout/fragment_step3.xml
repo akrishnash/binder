@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onboarding_step_3_title"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:letterSpacing="0.05"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onboarding_step_3_subtitle"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search for 3 books that represent your taste. These will be shown on your profile!"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <EditText
+                android:id="@+id/searchInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/search_books"
+                android:textColorHint="@color/input_hint"
+                android:textColor="@color/input_text"
+                android:textSize="16sp"
+                android:padding="18dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginEnd="12dp" />
+
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search"
+                android:textColor="@color/button_text_primary"
+                android:backgroundTint="@color/button_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:minWidth="100dp"
+                android:padding="18dp"
+                android:elevation="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/selectedBooksContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/gray_light"
+            android:layout_marginBottom="24dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/selectedBooksTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:id="@+id/selectedBooksList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_results"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="12dp" />
+
+        <LinearLayout
+            android:id="@+id/resultsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="40dp">
+
+            <Button
+                android:id="@+id/backButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="@string/back"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/button_text_secondary"
+                android:backgroundTint="@color/button_secondary"
+                android:layout_marginEnd="12dp" />
+
+            <Button
+                android:id="@+id/completeButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="@string/complete"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/button_text_primary"
+                android:backgroundTint="@color/button_primary"
+                android:elevation="4dp"
+                android:enabled="false" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

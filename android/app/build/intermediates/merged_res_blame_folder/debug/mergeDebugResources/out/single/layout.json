@@ -1,0 +1,114 @@
+[
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_welcome.xml",
+        "source": "com.binder.app-main-44:/layout/activity_welcome.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_step2.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_step2.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_step1_username.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_step1_username.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/item_card_book.xml",
+        "source": "com.binder.app-main-44:/layout/item_card_book.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_profile_edit.xml",
+        "source": "com.binder.app-main-44:/layout/activity_profile_edit.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_discovery.xml",
+        "source": "com.binder.app-main-44:/layout/activity_discovery.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/item_book_spine.xml",
+        "source": "com.binder.app-main-44:/layout/item_book_spine.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/card_discovery.xml",
+        "source": "com.binder.app-main-44:/layout/card_discovery.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_card_view.xml",
+        "source": "com.binder.app-main-44:/layout/activity_card_view.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_card_view_simple.xml",
+        "source": "com.binder.app-main-44:/layout/activity_card_view_simple.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_step1.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_step1.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/item_profile_book.xml",
+        "source": "com.binder.app-main-44:/layout/item_profile_book.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_step3_interests.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_step3_interests.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_onboarding.xml",
+        "source": "com.binder.app-main-44:/layout/activity_onboarding.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_profile.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_main_tabs.xml",
+        "source": "com.binder.app-main-44:/layout/activity_main_tabs.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_step2_age_gender.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_step2_age_gender.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_splash.xml",
+        "source": "com.binder.app-main-44:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_match.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_match.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_book_search.xml",
+        "source": "com.binder.app-main-44:/layout/activity_book_search.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/item_selected_book.xml",
+        "source": "com.binder.app-main-44:/layout/item_selected_book.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/activity_main.xml",
+        "source": "com.binder.app-main-44:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_step4_photo.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_step4_photo.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_step5_books.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_step5_books.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_step6_success.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_step6_success.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/item_book_search_result.xml",
+        "source": "com.binder.app-main-44:/layout/item_book_search_result.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/item_book_result.xml",
+        "source": "com.binder.app-main-44:/layout/item_book_result.xml"
+    },
+    {
+        "merged": "com.binder.app-mergeDebugResources-41:/layout/fragment_step3.xml",
+        "source": "com.binder.app-main-44:/layout/fragment_step3.xml"
+    }
+]

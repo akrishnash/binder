@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Binder</string>
+    
+    <!-- Onboarding -->
+    <string name="onboarding_step_1_title">Tell us about yourself</string>
+    <string name="onboarding_step_1_subtitle">Step 1 of 3</string>
+    <string name="onboarding_step_2_title">Choose your genres</string>
+    <string name="onboarding_step_2_subtitle">Step 2 of 3</string>
+    <string name="onboarding_step_3_title">My Mystery Shelf</string>
+    <string name="onboarding_step_3_subtitle">Step 3 of 3</string>
+    
+    <!-- Common -->
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="complete">Complete</string>
+    <string name="search">Search</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender</string>
+    <string name="interests">Interests</string>
+    <string name="genres">Genres</string>
+    <string name="select_all_that_apply">Select all that apply</string>
+    <string name="search_books">Search for books by title or author…</string>
+    <string name="selected_books">Selected Books (%1$d/3)</string>
+    <string name="search_results">Search Results</string>
+</resources>

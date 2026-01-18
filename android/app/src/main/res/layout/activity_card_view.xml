@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Bento-Box Card Container -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:elevation="12dp"
+            app:cardCornerRadius="32dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- THE MYSTERY HEADER (Top 60%) -->
+                <FrameLayout
+                    android:id="@+id/mysteryHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:minHeight="400dp">
+
+                    <!-- Reading Aura (Gradient Shadow) -->
+                    <View
+                        android:id="@+id/readingAura"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/reading_aura" />
+
+                    <!-- Portrait Photo -->
+                    <ImageView
+                        android:id="@+id/cardPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/ic_profile_placeholder"
+                        android:contentDescription="Profile photo" />
+
+                    <!-- Age & Name Overlay -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:background="@drawable/name_overlay_background">
+
+                        <TextView
+                            android:id="@+id/cardName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_white"
+                            android:letterSpacing="0.05" />
+
+                        <TextView
+                            android:id="@+id/cardAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_white"
+                            android:alpha="0.9" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <!-- THE BENTO INFO GRID (Bottom 40%) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="@color/white">
+
+                    <!-- Row 1: Top 3 Books (Large Tile) -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/tileTopBooks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/background_light">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Top 3 Books"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"
+                                android:layout_marginBottom="12dp" />
+
+                            <LinearLayout
+                                android:id="@+id/topBooksContainer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Row 2: Current Read & Interests -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <!-- Tile B: Current Read (Small) -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/tileCurrentRead"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="2dp"
+                            app:cardBackgroundColor="@color/button_primary">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="LIVE"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_white"
+                                    android:background="@drawable/live_badge"
+                                    android:paddingHorizontal="8dp"
+                                    android:paddingVertical="4dp"
+                                    android:layout_marginBottom="8dp" />
+
+                                <ImageView
+                                    android:id="@+id/currentBookCover"
+                                    android:layout_width="60dp"
+                                    android:layout_height="80dp"
+                                    android:scaleType="centerCrop"
+                                    android:background="@drawable/edit_text_background" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Tile C: Interests (Small) -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/tileInterests"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="2dp"
+                            app:cardBackgroundColor="@color/background_light">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="12dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Interests"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:layout_marginBottom="8dp" />
+
+                                <LinearLayout
+                                    android:id="@+id/cardInterests"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <!-- Row 3: The Why (Wide Tile) -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/tileTheWhy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/background_light">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="The Why"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:id="@+id/theWhyText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="italic"
+                                android:lineSpacingExtra="4dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Reading Pulse (Animated Progress Bar) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reading Pulse"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginBottom="4dp" />
+
+                        <ProgressBar
+                            android:id="@+id/readingPulse"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:max="100"
+                            android:progress="0"
+                            android:progressTint="@color/button_primary" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>
