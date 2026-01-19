@@ -8,7 +8,12 @@ import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Columns
+import io.github.jan.supabase.storage.Storage
+import io.github.jan.supabase.storage.storage
 import io.ktor.client.engine.android.Android
+import io.ktor.http.ContentType
+import io.ktor.http.content.OutgoingContent
+import java.io.InputStream
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
@@ -28,6 +33,7 @@ object SupabaseService {
     private val client: SupabaseClient by lazy {
         createSupabaseClient(SUPABASE_URL, SUPABASE_ANON_KEY) {
             install(Postgrest)
+            install(Storage)
             httpEngine = Android.create()
         }
     }
@@ -69,6 +75,7 @@ object SupabaseService {
                 put("books", JsonArray(booksArray))
             }
             
+            android.util.Log.d("SupabaseService", "Creating ProfileRow with photo_uri: ${profile.photoUri}")
             val profileRow = ProfileRow(
                 id = if (profile.id.startsWith("local-")) null else profile.id, // Use text_id for new profiles
                 text_id = profile.id, // Always set text_id
@@ -78,7 +85,7 @@ object SupabaseService {
                 interests = profile.interests,
                 genres = profile.genres,
                 books = booksJson,
-                photo_uri = profile.photoUri,
+                photo_uri = profile.photoUri, // This MUST be set - even if null
                 bio = profile.bio,
                 city = profile.city,
                 pages_read_today = profile.pagesReadToday,
@@ -87,14 +94,18 @@ object SupabaseService {
                 updated_at = null,
                 updated_at_text = profile.createdAt
             )
+            android.util.Log.d("SupabaseService", "ProfileRow created - photo_uri in row: ${profileRow.photo_uri}")
             
             if (profile.id.startsWith("local-")) {
                 // New profile - insert using text_id
                 android.util.Log.d("SupabaseService", "Inserting new profile")
+                android.util.Log.d("SupabaseService", "  photo_uri being saved: ${profileRow.photo_uri}")
                 client.from("profiles").insert(profileRow)
+                android.util.Log.d("SupabaseService", "✅ Insert completed")
             } else {
                 // Existing profile - update by text_id or id
                 android.util.Log.d("SupabaseService", "Updating existing profile")
+                android.util.Log.d("SupabaseService", "  photo_uri being saved: ${profileRow.photo_uri}")
                 client.from("profiles").update(profileRow) {
                     filter {
                         // Try text_id first, fallback to id
@@ -104,9 +115,11 @@ object SupabaseService {
                         }
                     }
                 }
+                android.util.Log.d("SupabaseService", "✅ Update completed")
             }
             
-            android.util.Log.d("SupabaseService", "Profile saved successfully: ${profile.id}")
+            android.util.Log.d("SupabaseService", "✅ Profile saved successfully: ${profile.id}")
+            android.util.Log.d("SupabaseService", "   photo_uri that was saved: ${profileRow.photo_uri}")
             Result.success(profile.id)
         } catch (e: Exception) {
             android.util.Log.e("SupabaseService", "Error saving profile", e)
@@ -279,7 +292,10 @@ object SupabaseService {
             genres = row.genres,
             books = booksList,
             createdAt = row.created_at_text ?: row.created_at?.toString() ?: "",
-            photoUri = row.photo_uri,
+            photoUri = row.photo_uri ?: run {
+                android.util.Log.w("SupabaseService", "⚠️ photo_uri is NULL in database for profile: ${row.username}")
+                null
+            },
             bio = row.bio,
             currentlyReading = emptyList(), // Can be enhanced later
             favoriteBooks = booksList,
@@ -386,6 +402,161 @@ object SupabaseService {
             Result.success(matchIds)
         } catch (e: Exception) {
             android.util.Log.e("SupabaseService", "Error getting matches", e)
+            e.printStackTrace()
+            Result.failure(e)
+        }
+    }
+    
+    /**
+     * Convert a local photo to base64 data URI
+     * @param context Android Context for accessing content resolver
+     * @param photoUri Local URI of the photo (content:// or file://)
+     * @return Result containing the base64 data URI if successful
+     */
+    suspend fun convertPhotoToBase64(context: android.content.Context, photoUri: String): Result<String> = withContext(Dispatchers.IO) {
+        try {
+            android.util.Log.d("SupabaseService", "Converting photo to base64: $photoUri")
+            
+            // Read the photo from URI
+            val uri = android.net.Uri.parse(photoUri)
+            val inputStream: InputStream = when {
+                photoUri.startsWith("content://") -> {
+                    context.contentResolver.openInputStream(uri)
+                        ?: throw IllegalArgumentException("Cannot open content:// URI: $photoUri")
+                }
+                photoUri.startsWith("file://") -> {
+                    java.io.FileInputStream(uri.path ?: throw IllegalArgumentException("Invalid file:// URI: $photoUri"))
+                }
+                else -> throw IllegalArgumentException("Unsupported URI scheme: $photoUri")
+            }
+            
+            // Read bytes from input stream
+            val bytes = inputStream.use { it.readBytes() }
+            android.util.Log.d("SupabaseService", "Read ${bytes.size} bytes from photo")
+            
+            // Convert to base64
+            val base64 = android.util.Base64.encodeToString(bytes, android.util.Base64.NO_WRAP)
+            val dataUri = "data:image/jpeg;base64,$base64"
+            android.util.Log.d("SupabaseService", "✅ Created base64 URI (${base64.length} chars)")
+            Result.success(dataUri)
+        } catch (e: Exception) {
+            android.util.Log.e("SupabaseService", "❌ Error converting photo to base64", e)
+            e.printStackTrace()
+            Result.failure(e)
+        }
+    }
+    
+    /**
+     * Upload a photo to Supabase Storage and return the public URL
+     * @param context Android Context for accessing content resolver
+     * @param photoUri Local URI of the photo (content://, file://, or android.resource://)
+     * @param userId User ID to use as filename prefix
+     * @return Result containing the public URL if successful
+     */
+    suspend fun uploadPhoto(context: android.content.Context, photoUri: String, userId: String): Result<String> = withContext(Dispatchers.IO) {
+        try {
+            android.util.Log.d("SupabaseService", "Uploading photo: $photoUri for user: $userId")
+            
+            // Generate unique filename: userId_timestamp.jpg
+            val timestamp = System.currentTimeMillis()
+            val filename = "${userId}_${timestamp}.jpg"
+            val filePath = filename // Path within the bucket (no bucket name prefix)
+            
+            // Read the photo from URI
+            val uri = android.net.Uri.parse(photoUri)
+            val inputStream: InputStream = when {
+                photoUri.startsWith("content://") -> {
+                    context.contentResolver.openInputStream(uri)
+                        ?: throw IllegalArgumentException("Cannot open content:// URI: $photoUri")
+                }
+                photoUri.startsWith("file://") -> {
+                    java.io.FileInputStream(uri.path ?: throw IllegalArgumentException("Invalid file:// URI: $photoUri"))
+                }
+                photoUri.startsWith("android.resource://") -> {
+                    // For drawable resources, we can't upload them - return the resource URI as-is
+                    android.util.Log.w("SupabaseService", "Cannot upload Android resource URI, returning as-is: $photoUri")
+                    return@withContext Result.success(photoUri)
+                }
+                else -> throw IllegalArgumentException("Unsupported URI scheme: $photoUri")
+            }
+            
+            // Read bytes from input stream
+            val bytes = inputStream.use { it.readBytes() }
+            
+            android.util.Log.d("SupabaseService", "Read ${bytes.size} bytes from photo")
+            
+            // Upload to Supabase Storage
+            try {
+                android.util.Log.d("SupabaseService", "=== STARTING SUPABASE STORAGE UPLOAD ===")
+                android.util.Log.d("SupabaseService", "Bucket: profile-photos")
+                android.util.Log.d("SupabaseService", "File path: $filePath")
+                android.util.Log.d("SupabaseService", "File size: ${bytes.size} bytes")
+                android.util.Log.d("SupabaseService", "User ID: $userId")
+                
+                val bucket = client.storage.from("profile-photos")
+                android.util.Log.d("SupabaseService", "✅ Bucket reference obtained")
+                
+                android.util.Log.d("SupabaseService", "Calling bucket.upload()...")
+                // Upload throws exception on error, so we catch it below
+                bucket.upload(filePath, bytes, upsert = true)
+                
+                android.util.Log.d("SupabaseService", "✅ Upload call completed successfully (no exception thrown)")
+                
+                // Get public URL (bucket is public, so we can use the direct URL)
+                val publicUrl = "${SUPABASE_URL}/storage/v1/object/public/profile-photos/$filename"
+                
+                android.util.Log.d("SupabaseService", "✅ Photo uploaded successfully: $publicUrl")
+                Result.success(publicUrl)
+            } catch (storageError: Exception) {
+                android.util.Log.e("SupabaseService", "❌ Storage upload failed!")
+                android.util.Log.e("SupabaseService", "   Error type: ${storageError.javaClass.simpleName}")
+                android.util.Log.e("SupabaseService", "   Error message: ${storageError.message}")
+                android.util.Log.e("SupabaseService", "   Bucket: profile-photos")
+                android.util.Log.e("SupabaseService", "   File path: $filePath")
+                android.util.Log.e("SupabaseService", "   File size: ${bytes.size} bytes")
+                storageError.printStackTrace()
+                
+                // Check if it's a bucket/policy error
+                val errorMsg = storageError.message ?: ""
+                if (errorMsg.contains("bucket", ignoreCase = true) || 
+                    errorMsg.contains("policy", ignoreCase = true) ||
+                    errorMsg.contains("permission", ignoreCase = true)) {
+                    android.util.Log.e("SupabaseService", "⚠️ This looks like a bucket/policy issue!")
+                    android.util.Log.e("SupabaseService", "   Make sure you ran supabase-storage-schema.sql in Supabase SQL Editor")
+                }
+                
+                // FALLBACK 1: Try to save photo as base64 in database (simple, always works)
+                // This is a simple solution that doesn't require Supabase Storage
+                try {
+                    android.util.Log.w("SupabaseService", "⚠️ Supabase Storage failed, using base64 fallback")
+                    // Convert bytes to base64
+                    val base64Photo = android.util.Base64.encodeToString(bytes, android.util.Base64.NO_WRAP)
+                    // Create a data URI: data:image/jpeg;base64,<base64_string>
+                    val base64Uri = "data:image/jpeg;base64,$base64Photo"
+                    android.util.Log.d("SupabaseService", "✅ Created base64 URI (${base64Photo.length} chars)")
+                    Result.success(base64Uri)
+                } catch (base64Error: Exception) {
+                    android.util.Log.e("SupabaseService", "❌ Base64 encoding failed", base64Error)
+                    // FALLBACK 2: Save photo locally and return a local file URI
+                    try {
+                        val localFile = java.io.File(context.filesDir, "profile_photos")
+                        if (!localFile.exists()) {
+                            localFile.mkdirs()
+                        }
+                        val localPhotoFile = java.io.File(localFile, filename)
+                        localPhotoFile.writeBytes(bytes)
+                        
+                        val localUri = android.net.Uri.fromFile(localPhotoFile).toString()
+                        android.util.Log.w("SupabaseService", "⚠️ Using local file fallback: $localUri")
+                        Result.success(localUri)
+                    } catch (localError: Exception) {
+                        android.util.Log.e("SupabaseService", "❌ All fallbacks failed", localError)
+                        Result.failure(storageError) // Return original error
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("SupabaseService", "❌ Error uploading photo", e)
             e.printStackTrace()
             Result.failure(e)
         }

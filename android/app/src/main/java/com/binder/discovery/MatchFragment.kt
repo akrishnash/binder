@@ -277,13 +277,46 @@ class MatchFragment : Fragment() {
                         photoView.setImageResource(R.drawable.ic_profile_placeholder)
                     }
                 } else {
-                    // Regular URI (file:// or http://)
+                    // Regular URI (file://, http://, https://, data:image, or content:// from image picker)
                     android.util.Log.d("MatchFragment", "Loading photo from URI: ${profile.photoUri}")
-                    Glide.with(this)
-                        .load(profile.photoUri)
-                        .placeholder(R.drawable.ic_profile_placeholder)
-                        .error(R.drawable.ic_profile_placeholder)
-                        .into(photoView)
+                    try {
+                        val loadTarget = when {
+                            profile.photoUri.startsWith("data:image") -> {
+                                // Base64 data URI - decode and load
+                                try {
+                                    val base64Data = profile.photoUri.substringAfter(",")
+                                    val imageBytes = android.util.Base64.decode(base64Data, android.util.Base64.NO_WRAP)
+                                    imageBytes
+                                } catch (e: Exception) {
+                                    android.util.Log.e("MatchFragment", "Error decoding base64 image", e)
+                                    null
+                                }
+                            }
+                            profile.photoUri.startsWith("http://") || profile.photoUri.startsWith("https://") -> {
+                                profile.photoUri // HTTP URL can be used directly
+                            }
+                            profile.photoUri.startsWith("file://") -> {
+                                android.net.Uri.parse(profile.photoUri)
+                            }
+                            else -> {
+                                android.net.Uri.parse(profile.photoUri) // content://
+                            }
+                        }
+                        
+                        if (loadTarget != null) {
+                            Glide.with(this)
+                                .load(loadTarget)
+                                .placeholder(R.drawable.ic_profile_placeholder)
+                                .error(R.drawable.ic_profile_placeholder)
+                                .into(photoView)
+                        } else {
+                            photoView.setImageResource(R.drawable.ic_profile_placeholder)
+                        }
+                    } catch (e: Exception) {
+                        android.util.Log.e("MatchFragment", "Error loading photo from URI: ${profile.photoUri}", e)
+                        e.printStackTrace()
+                        photoView.setImageResource(R.drawable.ic_profile_placeholder)
+                    }
                 }
             } else {
                 android.util.Log.w("MatchFragment", "Photo URI is null or empty for ${profile.username}")

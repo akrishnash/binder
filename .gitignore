@@ -11,3 +11,13 @@ npm-debug.*
 *.orig.*
 web-build/
 *.log
+
+# Android build artifacts
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+android/*.iml
+android/.idea/
+*.apk
+*.aab

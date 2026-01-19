@@ -93,16 +93,42 @@ class CardViewActivity : AppCompatActivity() {
                     photoImageView.setImageResource(R.drawable.ic_profile_placeholder)
                 }
             } else {
-                // Regular URI (file://, http://, or content:// from image picker)
+                // Regular URI (file://, http://, https://, data:image, or content:// from image picker)
                 android.util.Log.d("CardViewActivity", "Loading photo from URI: ${profile.photoUri}")
                 try {
-                    val uri = android.net.Uri.parse(profile.photoUri)
-                    Glide.with(this)
-                        .load(uri)
-                        .placeholder(R.drawable.ic_profile_placeholder)
-                        .error(R.drawable.ic_profile_placeholder)
-                        .into(photoImageView)
-                    android.util.Log.d("CardViewActivity", "Loaded photo from URI successfully")
+                    val loadTarget = when {
+                        profile.photoUri.startsWith("data:image") -> {
+                            // Base64 data URI - decode and load
+                            try {
+                                val base64Data = profile.photoUri.substringAfter(",")
+                                val imageBytes = android.util.Base64.decode(base64Data, android.util.Base64.NO_WRAP)
+                                imageBytes
+                            } catch (e: Exception) {
+                                android.util.Log.e("CardViewActivity", "Error decoding base64 image", e)
+                                null
+                            }
+                        }
+                        profile.photoUri.startsWith("http://") || profile.photoUri.startsWith("https://") -> {
+                            profile.photoUri // HTTP URL can be used directly
+                        }
+                        profile.photoUri.startsWith("file://") -> {
+                            android.net.Uri.parse(profile.photoUri)
+                        }
+                        else -> {
+                            android.net.Uri.parse(profile.photoUri) // content://
+                        }
+                    }
+                    
+                    if (loadTarget != null) {
+                        Glide.with(this)
+                            .load(loadTarget)
+                            .placeholder(R.drawable.ic_profile_placeholder)
+                            .error(R.drawable.ic_profile_placeholder)
+                            .into(photoImageView)
+                        android.util.Log.d("CardViewActivity", "Loaded photo from URI successfully")
+                    } else {
+                        photoImageView.setImageResource(R.drawable.ic_profile_placeholder)
+                    }
                 } catch (e: Exception) {
                     android.util.Log.e("CardViewActivity", "Error loading photo from URI", e)
                     e.printStackTrace()

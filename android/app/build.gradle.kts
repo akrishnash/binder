@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("plugin.serialization") version "1.9.24"
 }
 
 android {
@@ -68,6 +69,9 @@ dependencies {
     
     // JSON parsing
     implementation("com.google.code.gson:gson:2.10.1")
+    
+    // Kotlinx Serialization (required for Supabase @Serializable)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     
     // Supabase
     implementation("io.github.jan-tennert.supabase:postgrest-kt:2.5.2")
