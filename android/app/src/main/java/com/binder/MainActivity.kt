@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.binder.discovery.DiscoveryActivity
 import com.binder.discovery.MatchFragment
 import com.binder.profile.ProfileFragment
+import com.binder.tribes.TribesFragment
 import com.binder.utils.ProfileManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -37,6 +38,10 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_matches -> {
                     showFragment(MatchFragment())
+                    true
+                }
+                R.id.nav_tribes -> {
+                    showFragment(TribesFragment())
                     true
                 }
                 R.id.nav_profile -> {

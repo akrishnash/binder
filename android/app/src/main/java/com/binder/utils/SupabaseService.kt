@@ -30,7 +30,7 @@ object SupabaseService {
     private const val SUPABASE_URL = "https://nslffpqvdnhrlefpurhy.supabase.co"
     private const val SUPABASE_ANON_KEY = "sb_publishable_2FO0Ogo67lHJ0T4bJMlaeA_OHCdPeuL"
     
-    private val client: SupabaseClient by lazy {
+    internal val client: SupabaseClient by lazy {
         createSupabaseClient(SUPABASE_URL, SUPABASE_ANON_KEY) {
             install(Postgrest)
             install(Storage)
@@ -48,6 +48,7 @@ object SupabaseService {
         val interests: List<String>,
         val genres: List<String>,
         val books: JsonObject,
+        val currently_reading: JsonObject? = null, // Currently reading books for Tribe feature
         val photo_uri: String? = null,
         val bio: String = "",
         val city: String = "",
@@ -75,6 +76,20 @@ object SupabaseService {
                 put("books", JsonArray(booksArray))
             }
             
+            // Build currentlyReading JSON
+            val currentlyReadingArray = profile.currentlyReading.map { book ->
+                buildJsonObject {
+                    put("id", book.id)
+                    put("title", book.title)
+                    put("author", book.author)
+                    put("coverId", book.coverId ?: 0)
+                    put("coverUrl", book.coverUrl ?: "")
+                }
+            }
+            val currentlyReadingJson = buildJsonObject {
+                put("books", JsonArray(currentlyReadingArray))
+            }
+            
             android.util.Log.d("SupabaseService", "Creating ProfileRow with photo_uri: ${profile.photoUri}")
             val profileRow = ProfileRow(
                 id = if (profile.id.startsWith("local-")) null else profile.id, // Use text_id for new profiles
@@ -85,6 +100,7 @@ object SupabaseService {
                 interests = profile.interests,
                 genres = profile.genres,
                 books = booksJson,
+                currently_reading = currentlyReadingJson,
                 photo_uri = profile.photoUri, // This MUST be set - even if null
                 bio = profile.bio,
                 city = profile.city,
@@ -275,6 +291,38 @@ object SupabaseService {
             emptyList<Book>()
         }
         
+        // Parse currentlyReading books
+        val currentlyReadingList = try {
+            when (val currentlyReadingJson = row.currently_reading) {
+                null -> emptyList<Book>()
+                is JsonObject -> {
+                    when (val booksValue = currentlyReadingJson["books"]) {
+                        is JsonArray -> {
+                            booksValue.mapNotNull { bookObj ->
+                                try {
+                                    val bookJson = bookObj.jsonObject
+                                    Book(
+                                        id = bookJson["id"]?.jsonPrimitive?.content ?: "",
+                                        title = bookJson["title"]?.jsonPrimitive?.content ?: "",
+                                        author = bookJson["author"]?.jsonPrimitive?.content ?: "",
+                                        coverId = bookJson["coverId"]?.jsonPrimitive?.content?.toIntOrNull(),
+                                        coverUrl = bookJson["coverUrl"]?.jsonPrimitive?.content?.takeIf { it.isNotEmpty() }
+                                    )
+                                } catch (e: Exception) {
+                                    null
+                                }
+                            }
+                        }
+                        else -> emptyList<Book>()
+                    }
+                }
+                else -> emptyList<Book>()
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("SupabaseService", "Error parsing currentlyReading", e)
+            emptyList<Book>()
+        }
+        
         // Handle ID - prefer text_id, fallback to id (convert UUID to string if needed)
         val profileId = row.text_id ?: run {
             when (val idValue = row.id) {
@@ -297,7 +345,7 @@ object SupabaseService {
                 null
             },
             bio = row.bio,
-            currentlyReading = emptyList(), // Can be enhanced later
+            currentlyReading = currentlyReadingList,
             favoriteBooks = booksList,
             city = row.city,
             pagesReadToday = row.pages_read_today

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Tribes"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Join reading squads with people in your city"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Refresh Button -->
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refresh"
+            android:layout_gravity="end"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Loading Indicator -->
+        <ProgressBar
+            android:id="@+id/loadingIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <!-- Empty State -->
+        <TextView
+            android:id="@+id/emptyStateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No tribes yet. Start reading a book and we'll notify you when a tribe forms!"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:padding="32dp"
+            android:visibility="gone" />
+
+        <!-- Tribes Container -->
+        <LinearLayout
+            android:id="@+id/tribesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+</ScrollView>

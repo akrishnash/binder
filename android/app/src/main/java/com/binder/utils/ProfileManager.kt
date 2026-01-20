@@ -74,6 +74,17 @@ object ProfileManager {
                                 android.util.Log.d(TAG, "✅ Profile with username '${profile.username}' is now in Supabase database!")
                                 android.util.Log.d(TAG, "✅ Photo stored as base64 in database!")
                                 android.util.Log.d(TAG, "Profile is now available in database for matching")
+                                
+                                // Check for tribe formation after profile is saved
+                                if (profileToSave.currentlyReading.isNotEmpty() && profileToSave.city.isNotEmpty()) {
+                                    CoroutineScope(Dispatchers.IO).launch {
+                                        TribeService.checkAndCreateTribe(
+                                            profileToSave.id,
+                                            profileToSave.city,
+                                            profileToSave.currentlyReading
+                                        )
+                                    }
+                                }
                             }.onFailure { e ->
                                 Log.e(TAG, "❌ Failed to sync profile to Supabase: ${profile.id}", e)
                                 e.printStackTrace()
@@ -104,6 +115,17 @@ object ProfileManager {
                             Log.d(TAG, "✅ Profile successfully synced to Supabase: $profileId")
                             android.util.Log.d(TAG, "✅ Profile with username '${profile.username}' is now in Supabase database!")
                             android.util.Log.d(TAG, "Profile is now available in database for matching")
+                            
+                            // Check for tribe formation after profile is saved
+                            if (profileToSave.currentlyReading.isNotEmpty() && profileToSave.city.isNotEmpty()) {
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    TribeService.checkAndCreateTribe(
+                                        profileToSave.id,
+                                        profileToSave.city,
+                                        profileToSave.currentlyReading
+                                    )
+                                }
+                            }
                         }.onFailure { e ->
                             Log.e(TAG, "❌ Failed to sync profile to Supabase: ${profile.id}", e)
                             e.printStackTrace()
